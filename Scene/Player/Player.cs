@@ -7,6 +7,7 @@ public partial class Player : Area2D
 	[Export]
 	public int Speed {get;set;} = 400;
 
+
 	public Vector2 ScreenSize;
 	public override void _Ready() => ScreenSize = GetViewportRect().Size;
 	public override void _Process(double delta)
@@ -39,6 +40,17 @@ public partial class Player : Area2D
 		{
 			velocity = velocity.Normalized() * Speed;
 			animatedSprite2D.Play();
+			if(velocity.X != 0) 
+			{
+				animatedSprite2D.Animation = "walk";
+				animatedSprite2D.FlipV = false;
+				animatedSprite2D.FlipH = velocity.X < 0;
+			}
+			else if (velocity.Y != 0)
+			{
+				animatedSprite2D.Animation = "up";
+				animatedSprite2D.FlipV = velocity.Y > 0;
+			}
 		}
 		else
 		{
