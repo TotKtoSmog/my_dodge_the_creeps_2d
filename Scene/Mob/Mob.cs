@@ -1,15 +1,9 @@
 using Godot;
-using System;
 
 public partial class Mob : RigidBody2D
 {
 	public override void _Ready()
-	{
-		PlayAnimation();
-	}
-	public override void _Process(double delta)
-	{
-	}
+		=>PlayAnimation();
 
 	private void PlayAnimation()
 	{
@@ -18,7 +12,5 @@ public partial class Mob : RigidBody2D
 		animatedSprite2D.Play(mobTypes[GD.Randi() % mobTypes.Length]);
 	}
 	private void OnVisibleOnScreenNotifier2DScreenExited()
-	{
-		QueueFree();
-	}
+		=>QueueFree();
 }

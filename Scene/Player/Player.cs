@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Formats.Asn1;
 
 public partial class Player : Area2D
 {	
