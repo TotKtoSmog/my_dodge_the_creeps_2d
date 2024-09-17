@@ -17,6 +17,8 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+
+		GetNode<HUD>("HUD").ShowGameOver();
 	}
 	public void NewGame()
 	{
@@ -26,12 +28,20 @@ public partial class Main : Node
 		var startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
 
+		var hud = GetNode<HUD>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMassage("Приготовься");
+
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
+
 		GetNode<Timer>("StartTimer").Start();
+
 	}
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
 		GD.Print($"Score: {_score}");
+		GetNode<HUD>("HUD").UpdateScore(_score);
 	}
 
 	private void OnStartTimerTimeout()

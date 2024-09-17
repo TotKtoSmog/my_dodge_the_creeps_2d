@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="my_dodge_the_creeps_2d"
 
+[global_group]
+
+mobs=""
+
 [input]
 
 move_right={
